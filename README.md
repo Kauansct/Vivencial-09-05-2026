@@ -28,23 +28,23 @@ Aplicação interativa em OpenGL que permite ao usuário desenhar triângulos na
 ```
 ExampleCode2/
 ├── ExampleCode/
-│   ├── Source.cpp          # Código principal
-│   ├── glad.c              # Loader OpenGL
-│   ├── glfw3.dll           # DLL do GLFW (runtime)
+│   ├── Source.cpp          
+│   ├── glad.c             
+│   ├── glfw3.dll           
 │   ├── libgcc_s_seh-1.dll
 │   ├── libstdc++-6.dll
 │   ├── libwinpthread-1.dll
-│   └── Source.exe          # Executável pré-compilado
+│   └── Source.exe          
 ├── Dependencies/
-│   ├── GLAD/               # Headers e source do GLAD
-│   ├── glfw-3.4.bin.WIN64/ # Binários e headers do GLFW
-│   ├── glm/                # Biblioteca matemática GLM
-│   └── stb_image/          # STB image loader
+│   ├── GLAD/               
+│   ├── glfw-3.4.bin.WIN64/ 
+│   ├── glm/                
+│   └── stb_image/          
 ├── Common/
 │   ├── include/Shader.h
 │   └── src/Shader.cpp
 └── .vscode/
-    ├── tasks.json          # Configuração de build
+    ├── tasks.json          
     └── c_cpp_properties.json
 ```
 
@@ -85,10 +85,6 @@ g++ -g \
   -o ./ExampleCode/Source.exe
 ```
 
-Ou no **VS Code**, abra o arquivo `Source.cpp` e pressione `Ctrl+Shift+B`.
-
----
-
 ## Execução
 
 Navegue até a pasta `ExampleCode/` e execute o binário:
@@ -100,23 +96,4 @@ cd ExampleCode2/ExampleCode
 
 As DLLs necessárias (`glfw3.dll`, `libstdc++-6.dll`, etc.) já estão incluídas na mesma pasta do executável.
 
----
 
-## Tecnologias utilizadas
-
-| Biblioteca | Versão | Função |
-|---|---|---|
-| OpenGL | 4.5 | API gráfica |
-| GLFW | 3.4 | Janela e input |
-| GLAD | — | Loader de funções OpenGL |
-| GLM | — | Matemática vetorial/matricial |
-
----
-
-## Detalhes técnicos
-
-- **Shader de vértice:** recebe posição `vec2` em coordenadas de mundo e aplica projeção ortográfica via uniform `mat4 projection`
-- **Shader de fragmento:** cor sólida passada via uniform `vec3 inputColor`
-- **VAO/VBO:** cada triângulo finalizado possui seu próprio VAO alocado em GPU com `GL_STATIC_DRAW`
-- **Pontos pendentes:** renderizados a cada frame com VAO temporário e `GL_DYNAMIC_DRAW`, deletado após o draw
-- **Projeção:** `glm::ortho` centrada na janela, mapeando pixels diretamente para coordenadas de mundo
